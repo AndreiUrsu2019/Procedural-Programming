@@ -1,0 +1,82 @@
+"""
+Nivel:
+Deloc programare: x,x,x,x 
+Putina programare:x x, x,, x,, x,, x,,x, x
+Suficient de multa program. : X
+"""
+"""
+1. Sa se afiseze ce zi a saptamanii este pentru data curenta.
+"""
+
+'''
+t = ('luni', 'marti','miercuri','joi','vineri','sambata','duminica' )
+      
+
+import time
+azi=time.localtime()
+print(t[azi.tm_wday])
+'''
+
+'''
+2. Se citeste un nr nat n de pe prima linie a fisierului "date.txt". De pe urmatoarele n linii se citesc detalii despre n studenti: 
+Nume prenume, zz.ll.aaaa
+
+Ex.:
+3
+Pop Ioan-Daniel, 13.02.2002
+Toma Laura-Elena, 15.03.2000
+Jercan Dan, 18.03.2003
+
+Sa se afiseze in fisierul "date.out" ce studenti sunt nascuti in fiecare luna a anului.
+
+Febuarie: Pop Ioan-Daniel
+Martie: Toma Laura-Elena, Jercan Dan
+
+d = {2 : ['Pop Ioan-Daniel'], 3 : ['Toma Laura-Elena', 'Jercan Dan']}
+
+
+
+'''
+'''
+
+
+# t = ('ianuarie', 'februarie', )
+f=open("date.txt", "r")
+g=open("date.out", "w")
+n=int(f.readline())
+
+lunile={1:"ianuarie", 2:"februarie", 3:"martie", 4:"aprilie", 5: "mai", 6:"iunie", 7:"iulie", 8:"august", 9:"septembrie", 10:"octombrie", 11:"noiembrie", 12:"decembrie"}
+
+import collections
+d = collections.defaultdict(list)
+
+
+for i in range(n):
+  student=f.readline()
+  #print(student)
+  l=(student.split(sep=", "))
+  nume=l[0]
+  l2=l[1].split(".")
+  #print(l2)
+  luna=int(l2[1])   # '02'  --> 2
+  d[luna].append(nume)
+for i in d:
+  #print(lunile[i].title(), ": ", end = "")
+  #print(*d[i], sep = ", ")
+#print(d)
+  g.write(lunile[i].title() + " ")
+  g.write(", ".join(d[i]) + "\n") 
+'''
+
+'''
+Creati modulul 'numere'.
+
+Scrieți o funcție suma_cif_k ce primește un număr variabil de parametri poziționali valori naturale și returnează lista numerelor ce au suma cifrelor k (primit ca parametru) – fara structuri repetitive. Scrieti doua apeluri diferite pentru functie.
+
+
+Functia suma_cif_k va fi def in modulul 'numere'.
+'''
+
+import numere
+print(numere.suma_cif_k(5, 12, 23, 500))
+
