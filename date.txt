@@ -1,0 +1,13 @@
+3
+Pop Ioan-Daniel, 13.02.2002
+Toma Laura-Elena, 15.03.2000
+Jercan Dan, 18.03.2003
+
+
+numere.py
+def suma_cif(x):
+  return sum(map(int, list(str(x))))
+
+
+def suma_cif_k(k, *l):
+  return list(filter(lambda x : suma_cif(x) == k, l))
