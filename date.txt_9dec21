@@ -1,0 +1,6 @@
+def suma_cif(x):
+  return sum(map(int, list(str(x))))
+
+
+def suma_cif_k(k, *l):
+  return list(filter(lambda x : suma_cif(x) == k, l))
