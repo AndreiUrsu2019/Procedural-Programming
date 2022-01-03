@@ -1,0 +1,119 @@
+"""
+Nivel:
+Deloc programare: x,x,x,x 
+Putina programare:x x, x,, x,, x,, x,,x, x
+Suficient de multa program. : X
+"""
+
+'''
+1.	Din fisierul date.txt se citeste de pe prima linie n număr natural, apoi, de pe următoarele n linii se citesc pentru n persoane numele si data nasterii. Pe baza acestor date, folosind metoda substitute, creati un mesaj personalizat de forma:
+
+Draga  …,
+Mai sunt .... zile pana la ziua ta, cand vei implini … ani. Am facut rezervare inca de pe acum in Bucegi, la cabana “Muntele Rosu”, in perioada …. - ……
+
+Perioada va incepe cu 3 zile inainte de ziua de nastere si se va incheia la alte 3 zile dupa aceasta.
+
+'''
+
+'''
+import time
+import datetime
+import string
+
+f=open("date.txt", "r")
+n=int(f.readline())
+print(n)
+an_curent=time.localtime().tm_year
+
+for i in range (n):  
+    n1=f.readline()
+    l=n1.split(", ")
+    nume=l[0]
+    d1=l[1].strip("\n")
+
+
+    d2 = datetime.date(int(d1[6:]) , int(d1[3:5]), int(d1[0:2]))
+    an_nastere=int(d1[6:])
+
+    d2 = d2.replace(year = an_curent)
+    if d2 < datetime.date.today():
+      d2 = d2.replace(year = an_curent + 1)
+
+    nr_zile=(d2-datetime.date.today()).days
+    varsta=d2.year - an_nastere
+    fin=d2+datetime.timedelta(days=3)
+    inc=d2+datetime.timedelta(days=-3)
+    
+    invitatie=string.Template("""Draga  $nume_persoana,
+    Mai sunt $zile zile pana la ziua ta, cand vei implini $varsta ani. Am facut rezervare inca de pe acum in Bucegi, la cabana “Muntele Rosu”, in perioada $inc - $fin
+    """)
+    print(invitatie.safe_substitute(nume_persoana=nume, zile=nr_zile, varsta=varsta, inc=inc, fin=fin))
+    
+'''
+
+'''
+
+
+print("#", d2)
+
+
+ aniv_an_curent=d1[0:6]+str(an_curent)
+ data_aniv=time.strptime(aniv_an_curent, "%d.%m.%Y")
+
+ d3 = datetime.date(data_aniv.tm_year, data_aniv.tm_mon, data_aniv.tm_mday)
+ print("*", d3)
+  
+ aniv_an_curent=d1[0:6]+str(an_curent)
+ #print(aniv_an_curent)
+ data_aniv=time.strptime(aniv_an_curent, "%d.%m.%Y")
+ print("&", data_aniv)
+
+ if data_aniv < time.localtime():
+   aniv_an_curent=d1[0:6]+str(an_curent+1) 
+   data_aniv=time.strptime(aniv_an_curent, "%d.%m.%Y")
+'''
+ #print("data nasterii: ", d2)
+'''
+     15.12.2000
+     2021
+
+     Aniversarea: 15.12.2022
+
+     d1 = '15.12.2000'
+     aniv_an_curent = '15.12.' + '2021'
+     
+
+     aniv_an_curent < time.localtime()
+
+     aniv_string =    '15.12.' + '2021' / '2022'  (if....)
+     data_aniv = time.strptime(aniv, "%d.%m.%Y")
+
+time:  strptime:  string                   --> data time
+datetime: date:   3 intregi (an, luna, zi) --> datetime
+
+
+
+ time   -->  datetime
+     datetime.date
+
+        <--
+        timetuple()
+
+ '''
+
+
+import re
+
+#1) compilare
+expr_regulata = re.compile('[aeiouAEIOU]')
+print(expr_regulata.findall("Xenia e la scoala"))
+
+
+#2) fara compilare
+print(re.findall('[aeiouAEIOU]', "Xenia e la scoala"))
+
+
+l = re.findall('[\w-]+', "Xenia, esti la scoala intr-o zi de vineri?")
+lmin=min(list(map(len, l)))
+l_cuv = list(filter(lambda x : len(x) == lmin, l))
+print(l_cuv)
